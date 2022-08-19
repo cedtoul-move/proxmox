@@ -123,8 +123,18 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.
 sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 
+# Ajout de l'utilisateur au groupe docker
+usermod -G docker christophe
+
 # On teste le bon fonctionnement
 sudo docker run hello-world
+
+# Create the docker group.
+sudo groupadd docker
+
+# Add your user to the docker group.
+sudo usermod -aG docker $USER
+
 ```
 
 ## Installation de Portainer
